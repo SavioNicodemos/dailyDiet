@@ -1,4 +1,3 @@
-import { ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { ThemeProvider } from 'styled-components/native';
 import { useFonts, NunitoSans_400Regular, NunitoSans_700Bold } from '@expo-google-fonts/nunito-sans';
@@ -6,14 +5,15 @@ import { useFonts, NunitoSans_400Regular, NunitoSans_700Bold } from '@expo-googl
 import { Home } from '@screens/Home';
 
 import theme from './src/theme';
+import { Loading } from '@components/Loading';
 
 export default function App() {
-  const [fontsLoaded] = useFonts({NunitoSans_400Regular, NunitoSans_700Bold});
+  const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
 
   return (
     <ThemeProvider theme={theme}>
       <StatusBar style="auto" />
-      {fontsLoaded ? <Home /> : <ActivityIndicator />}
+      {fontsLoaded ? <Home /> : <Loading />}
     </ThemeProvider>
   );
 }
