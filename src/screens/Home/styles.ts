@@ -1,5 +1,6 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { Image } from "expo-image";
+import { Feather } from "@expo/vector-icons";
 
 export const Container = styled.View`
   flex: 1;
@@ -27,4 +28,21 @@ export const AvatarPicture = styled(Image).attrs({
   border-radius: 20px;
   border: solid 3px;
   border-color: ${({ theme }) => theme.COLORS.GRAY_2};
+`;
+
+export const MealsPercentageContainer = styled.View`
+  width: 100%;
+  padding: 18px;
+  margin: 8px 0;
+  border-radius: 8px;
+
+  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+`;
+
+export const GoToStatisticsIcon = styled(Feather).attrs(({ theme }) => ({
+  size: 24,
+  color: theme.COLORS.GREEN_DARK,
+  name: "arrow-up-right",
+}))`
+  align-self: flex-end;
 `;
