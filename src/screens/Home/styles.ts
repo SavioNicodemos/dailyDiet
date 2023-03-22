@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components/native";
 import { Image } from "expo-image";
 import { Feather } from "@expo/vector-icons";
+import { LinearGradient } from "expo-linear-gradient";
 
 export const Container = styled.View`
   flex: 1;
@@ -45,4 +46,46 @@ export const GoToStatisticsIcon = styled(Feather).attrs(({ theme }) => ({
   name: "arrow-up-right",
 }))`
   align-self: flex-end;
+`;
+
+export const MealListContainer = styled.View`
+  flex: 1;
+  margin-top: 24px;
+`;
+
+export const MealTitle = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.MD}px;
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+    color: ${theme.COLORS.GRAY_1};
+  `}
+  margin: 8px 0;
+`;
+
+export const MealDateText = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.LG}px;
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    color: ${theme.COLORS.GRAY_1};
+  `}
+  margin: 8px 0;
+`;
+
+export const TopGradient = styled(LinearGradient).attrs(({ theme }) => ({
+  colors: [theme.COLORS.GRAY_7, "transparent"],
+}))`
+  height: 40px;
+  width: 100%;
+  margin-top: 24px;
+  margin-bottom: -40px;
+  z-index: 2;
+`;
+
+export const BottomGradient = styled(LinearGradient).attrs(({ theme }) => ({
+  colors: ["transparent", theme.COLORS.GRAY_7],
+}))`
+  height: 50px;
+  width: 100%;
+  margin-top: -50px;
+  z-index: 2;
 `;
