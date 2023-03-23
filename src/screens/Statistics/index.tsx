@@ -1,12 +1,19 @@
+import { useNavigation } from '@react-navigation/native';
+
 import { Header } from '@components/Header';
 import { PercentageText } from '@components/PercentageText';
 import { StatisticsCard } from '@components/StatisticsCard';
 import { Container, OnAndOffDietContainer, StatisticsCardsContainer, StatisticsTitle } from './styles';
 
 export const Statistics = () => {
+  const navigation = useNavigation();
+
+  function handleGoToHome() {
+    navigation.goBack();
+  }
   return (
     <Container>
-      <Header backButtonColor='RED' noMargin style={{ paddingHorizontal: 24 }} onBackPress={() => console.log('Oi, caramba')} />
+      <Header backButtonColor='RED' noMargin style={{ paddingHorizontal: 24 }} onBackPress={handleGoToHome} />
       <PercentageText percentageValue={30.5} />
       <StatisticsCardsContainer>
         <StatisticsTitle>

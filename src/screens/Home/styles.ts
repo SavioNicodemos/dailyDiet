@@ -2,8 +2,9 @@ import styled, { css } from "styled-components/native";
 import { Image } from "expo-image";
 import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-export const Container = styled.View`
+export const Container = styled(SafeAreaView)`
   flex: 1;
   padding: 24px 24px 0 24px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_7};
@@ -38,6 +39,10 @@ export const MealsPercentageContainer = styled.View`
   border-radius: 8px;
 
   background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+`;
+
+export const GoToStatisticsButton = styled.TouchableOpacity`
+  z-index: 1;
 `;
 
 export const GoToStatisticsIcon = styled(Feather).attrs(({ theme }) => ({

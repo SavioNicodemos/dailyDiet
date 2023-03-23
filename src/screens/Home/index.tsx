@@ -1,5 +1,5 @@
 import { SectionList } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
+import { useNavigation } from '@react-navigation/native';
 
 import { PercentageText } from '@components/PercentageText';
 import { Button } from '@components/Button';
@@ -7,9 +7,14 @@ import { MealListItem } from '@components/MealListItem';
 import { ListEmpty } from '@components/ListEmpty';
 import Logo from '@assets/Logo.svg';
 
-import { AppLogo, AvatarPicture, BottomGradient, Container, GoToStatisticsIcon, HomeHeader, MealDateText, MealListContainer, MealsPercentageContainer, MealTitle, TopGradient } from './styles';
+import { AppLogo, AvatarPicture, BottomGradient, Container, GoToStatisticsButton, GoToStatisticsIcon, HomeHeader, MealDateText, MealListContainer, MealsPercentageContainer, MealTitle, TopGradient } from './styles';
 
 export const Home = () => {
+  const navigation = useNavigation();
+
+  function handleGoToStatistics() {
+    navigation.navigate('statistics');
+  }
 
   return (
     <Container>
@@ -20,7 +25,9 @@ export const Home = () => {
       </HomeHeader>
 
       <MealsPercentageContainer>
-        <GoToStatisticsIcon />
+        <GoToStatisticsButton onPress={handleGoToStatistics}>
+          <GoToStatisticsIcon />
+        </GoToStatisticsButton>
         <PercentageText percentageValue={90.865} style={{ marginTop: -20 }} />
       </MealsPercentageContainer>
 
