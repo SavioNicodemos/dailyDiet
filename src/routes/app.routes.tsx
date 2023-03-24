@@ -4,13 +4,18 @@ import { FinishedRegistration } from '@screens/FinishedRegistration';
 import { Home } from '@screens/Home';
 import { NewMeal } from '@screens/NewMeal';
 import { Statistics } from '@screens/Statistics';
+import { ViewMeal } from '@screens/ViewMeal';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
 export function AppRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }}>
+    <Navigator screenOptions={{ headerShown: false }} initialRouteName='viewMeal'>
 
+      <Screen
+        name='viewMeal'
+        component={ViewMeal}
+      />
       <Screen
         name='home'
         component={Home}
@@ -30,6 +35,7 @@ export function AppRoutes() {
         name='finishedRegistration'
         component={FinishedRegistration}
       />
+
 
     </Navigator>
   )
