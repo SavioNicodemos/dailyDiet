@@ -35,7 +35,12 @@ export const Home = () => {
         <MealTitle>
           Refeições
         </MealTitle>
-        <Button icon='plus' title='Nova refeição' />
+
+        <Button
+          onPress={() => navigation.navigate('newMeal')}
+          icon='plus'
+          title='Nova refeição'
+        />
 
         <TopGradient />
         <SectionList
