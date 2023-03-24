@@ -14,6 +14,10 @@ export const NewMeal = () => {
   function handleGoToHome() {
     navigation.navigate('home');
   }
+
+  function handleSubmitMeal() {
+    navigation.navigate('finishedRegistration', { isOnDiet: false })
+  }
   return (
     <Container>
       <Header
@@ -35,7 +39,7 @@ export const NewMeal = () => {
           <IsOnDietToggle title='Está dentro da dieta?' buttonTitles={['Sim', 'Não']} />
         </Form>
 
-        <Button title='Cadastrar Refeição' style={{ marginVertical: 24 }} />
+        <Button title='Cadastrar Refeição' style={{ marginVertical: 24 }} onPress={() => handleSubmitMeal()} />
       </Content>
     </Container>
   )

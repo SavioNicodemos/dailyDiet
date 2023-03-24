@@ -17,7 +17,7 @@ export const Content = styled.View`
 
 export const Form = styled.View`
   flex: 1;
-  gap: 16px;
+  gap: 30px;
 `;
 
 export const DateTimeContainer = styled.View`
