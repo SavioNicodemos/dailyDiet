@@ -65,7 +65,7 @@ export const Home = () => {
         </MealTitle>
 
         <Button
-          onPress={() => navigation.navigate('newMeal')}
+          onPress={() => navigation.navigate('newMeal', {})}
           icon='plus'
           title='Nova refeição'
         />

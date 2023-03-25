@@ -34,6 +34,10 @@ export const ViewMeal = () => {
     }
   }
 
+  function handleEditMeal() {
+    navigation.navigate('newMeal', { id })
+  }
+
   function handleOpenModal() {
     setModalVisible(true);
   }
@@ -79,7 +83,7 @@ export const ViewMeal = () => {
           </OnDietContainer>
         </ItemDetails>
         <Footer>
-          <Button title="Editar refeição" icon='edit-3' />
+          <Button title="Editar refeição" icon='edit-3' onPress={handleEditMeal} />
           <Button type='SECONDARY' title="Excluir Refeição" icon='trash-2' onPress={handleOpenModal} />
         </Footer>
       </Content>

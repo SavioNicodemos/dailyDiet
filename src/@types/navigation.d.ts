@@ -3,7 +3,9 @@ export declare global {
     interface RootParamList {
       home: undefined;
       statistics: undefined;
-      newMeal: undefined;
+      newMeal: {
+        id?: string;
+      };
       finishedRegistration: {
         isOnDiet: boolean;
       };
