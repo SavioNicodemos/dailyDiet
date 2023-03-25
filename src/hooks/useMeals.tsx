@@ -19,6 +19,7 @@ type MealsContextData = {
   loading: boolean;
   meals: AllMealsDTO;
   storeMeal: (meal: MealDTO) => void;
+  findMealById: (id: string) => MealDTO | null;
 }
 
 const MealsContext = createContext<MealsContextData>({} as MealsContextData);
@@ -36,6 +37,22 @@ const MealsProvider = ({ children }: Props) => {
     }
   }, [meals]);
 
+  const findMealById = useCallback((id: string) => {
+    let foundMeal = null;
+    for (const date of meals) {
+      for (const meal of date.data) {
+        if (meal.id === id) {
+          foundMeal = meal;
+          break;
+        }
+      }
+      if (foundMeal !== null) {
+        break;
+      }
+    }
+    return foundMeal;
+  }, [meals]);
+
   useEffect(() => {
     async function loadStoragedData() {
       const getMeals = await mealsGetAll();
@@ -49,7 +66,7 @@ const MealsProvider = ({ children }: Props) => {
 
   return (
     <MealsContext.Provider
-      value={{ loading, meals, storeMeal }}
+      value={{ loading, meals, storeMeal, findMealById }}
     >
       {children}
     </MealsContext.Provider>

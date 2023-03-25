@@ -1,4 +1,4 @@
-import { SectionList } from 'react-native';
+import { Alert, SectionList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import Logo from '@assets/Logo.svg';
@@ -32,6 +32,13 @@ export const Home = () => {
 
   const { meals, loading: isLoading } = useMeals();
   const navigation = useNavigation();
+
+  function handleViewMeal(id: string | undefined) {
+    if (id) {
+      return navigation.navigate('viewMeal', { id: id })
+    }
+    return Alert.alert("Refeição", 'Refeição sem ID válido');
+  }
 
   function handleGoToStatistics() {
     navigation.navigate('statistics');
@@ -75,7 +82,7 @@ export const Home = () => {
               <MealDateText>{date}</MealDateText>
             )}
             renderItem={({ item }) => (
-              <MealListItem time={item.time} name={item.name} isOnDiet={item.isOnDiet} />
+              <MealListItem time={item.time} name={item.name} isOnDiet={item.isOnDiet} onPress={() => handleViewMeal(item.id)} />
             )}
             ListEmptyComponent={<ListEmpty message='Sem refeições adicionadas ainda. Que tal adicionar alguma para começar?' />}
             contentContainerStyle={meals.length === 0 ? { flex: 1 } : { paddingBottom: 50 }}

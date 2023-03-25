@@ -7,7 +7,9 @@ export declare global {
       finishedRegistration: {
         isOnDiet: boolean;
       };
-      viewMeal: undefined;
+      viewMeal: {
+        id: string;
+      };
     }
   }
 }

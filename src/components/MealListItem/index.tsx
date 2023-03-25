@@ -1,14 +1,15 @@
+import { TouchableOpacityProps } from 'react-native';
 import { Container, Time, Separator, Name, SuccessSign } from './styles';
 
-type Props = {
+type Props = TouchableOpacityProps & {
   time: string,
   name: string,
   isOnDiet: boolean,
 }
 
-export const MealListItem = ({ time, name, isOnDiet }: Props) => {
+export const MealListItem = ({ time, name, isOnDiet, ...rest }: Props) => {
   return (
-    <Container>
+    <Container {...rest}>
       <Time>{time}</Time>
       <Separator>|</Separator>
       <Name>{name}</Name>

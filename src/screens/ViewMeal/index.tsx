@@ -1,14 +1,28 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Header } from '@components/Header';
 import { Container, Content, Footer, ItemDetails, DateTitle, DatetimeText, Description, Name, OnDietContainer, Indicator, OnDietText } from './styles';
 import { Button } from '@components/Button';
 import { Modal } from '@components/Modal';
 import { useState } from 'react';
+import { useMeals } from '@hooks/useMeals';
+
+type RouteParams = {
+  id: string;
+}
 
 export const ViewMeal = () => {
   const [modalVisible, setModalVisible] = useState(false);
+
   const navigation = useNavigation();
+  const route = useRoute()
+  const { findMealById } = useMeals();
+
+  const { id } = route.params as RouteParams;
+
+  const selectedMeal = findMealById(id);
+
+  const colorSchemeType = selectedMeal?.isOnDiet ? 'PRIMARY' : 'SECONDARY';
 
   function handleOpenModal() {
     setModalVisible(true);
@@ -22,7 +36,7 @@ export const ViewMeal = () => {
     navigation.navigate('home');
   }
   return (
-    <Container type='PRIMARY'>
+    <Container type={colorSchemeType}>
       <Header
         title='Refeição'
         onBackPress={handleGoToHome}
@@ -33,24 +47,24 @@ export const ViewMeal = () => {
         <ItemDetails>
 
           <Name>
-            Sanduíche
+            {selectedMeal?.name}
           </Name>
 
           <Description>
-            Sanduíche de pão integral com atum e salada de alface e tomate
+            {selectedMeal?.description}
           </Description>
 
           <DateTitle>
             Data e hora
           </DateTitle>
           <DatetimeText>
-            12/08/2022 às 16:00
+            {selectedMeal?.date} às {selectedMeal?.time}
           </DatetimeText>
 
           <OnDietContainer>
-            <Indicator type='PRIMARY' />
+            <Indicator type={colorSchemeType} />
             <OnDietText>
-              dentro da dieta
+              {selectedMeal?.isOnDiet ? 'dentro' : 'fora'} da dieta
             </OnDietText>
           </OnDietContainer>
         </ItemDetails>
