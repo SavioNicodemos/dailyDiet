@@ -9,6 +9,7 @@ import React, {
 import { mealsGetAll } from '@storage/meals/mealsGetAll';
 import { AllMealsDTO } from 'src/@dtos/MealDTO';
 import { getMaximumStreak, getMealsOnOffDiet, isTolerable } from '@utils/statistics';
+import { useMeals } from './useMeals';
 
 type Props = {
   children?: ReactNode;
@@ -21,7 +22,6 @@ type MealsCount = {
 }
 
 type StatisticsContextData = {
-  loading: boolean;
   mealsCount: MealsCount;
   percentageOnDiet: number;
   isAcceptable: boolean;
@@ -32,8 +32,7 @@ type StatisticsContextData = {
 const StatisticsContext = createContext<StatisticsContextData>({} as StatisticsContextData);
 
 const StatisticsProvider = ({ children }: Props) => {
-  const [meals, setMeals] = useState<AllMealsDTO>([]);
-  const [loading, setLoading] = useState(true);
+  const { meals } = useMeals();
 
   const mealsCount = useMemo(() => {
     const [totalMeals, mealsOnDiet, mealsOffDiet] = getMealsOnOffDiet(meals);
@@ -69,24 +68,9 @@ const StatisticsProvider = ({ children }: Props) => {
     return getMaximumStreak(meals);
   }, [meals]);
 
-  useEffect(() => {
-    async function loadStoragedData() {
-      const getMeals = await mealsGetAll();
-      setMeals(getMeals)
-
-      setLoading(false);
-    }
-
-    loadStoragedData();
-  }, []);
-
-  useEffect(() => {
-
-  }, [meals])
-
   return (
     <StatisticsContext.Provider
-      value={{ loading, mealsCount, percentageOnDiet, isAcceptable, colorSchemeType, bestStreak }}
+      value={{ mealsCount, percentageOnDiet, isAcceptable, colorSchemeType, bestStreak }}
     >
       {children}
     </StatisticsContext.Provider>
@@ -97,7 +81,7 @@ function useStatistics() {
   const context = useContext(StatisticsContext);
 
   if (!context) {
-    throw new Error('UseMeals must be used within an StatisticsProvider');
+    throw new Error('useStatistics must be used within an StatisticsProvider');
   }
 
   return context;

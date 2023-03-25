@@ -33,6 +33,7 @@ export async function mealCreate(newMeal: MealDTO) {
 
     const storage = JSON.stringify(sortedDates);
     await AsyncStorage.setItem(MEAL_COLLECTION, storage);
+    return sortedDates;
   } catch (error) {
     throw error;
   }

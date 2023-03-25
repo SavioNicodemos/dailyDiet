@@ -7,10 +7,10 @@ import { Input } from '@components/Input';
 import { IsOnDietToggle } from '@components/IsOnDietToggle';
 
 import { Container, Content, DateTimeContainer, Form } from './styles';
-import { mealCreate } from '@storage/meals/mealCreate';
 import { useState } from 'react';
 import { MealDTO } from 'src/@dtos/MealDTO';
 import { Alert } from 'react-native';
+import { useMeals } from '@hooks/useMeals';
 
 export const NewMeal = () => {
   const [meal, setMeal] = useState<MealDTO>({
@@ -20,6 +20,8 @@ export const NewMeal = () => {
     time: '',
     isOnDiet: true,
   });
+
+  const { storeMeal } = useMeals();
 
   const navigation = useNavigation();
 
@@ -33,7 +35,7 @@ export const NewMeal = () => {
       if (!isValid) {
         Alert.alert('Inválido', 'Por favor, preencha todos os campos do formulário!')
       }
-      await mealCreate(meal);
+      await storeMeal(meal);
       navigation.navigate('finishedRegistration', { isOnDiet: meal.isOnDiet })
     } catch (error) {
       Alert.alert('Nova refeição', 'Erro ao criar nova refeição!')
