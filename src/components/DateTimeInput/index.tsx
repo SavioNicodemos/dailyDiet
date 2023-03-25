@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 
 import { Body, Container, DatetimeText, Title } from './styles';
@@ -10,9 +10,10 @@ type Props = {
   title: string;
   mode: 'date' | 'time';
   onDateChange?: (date: string) => void;
+  defaultValue?: string;
 }
 
-export const DateTimeInput = ({ title, mode, onDateChange = () => { } }: Props) => {
+export const DateTimeInput = ({ title, mode, onDateChange = () => { }, defaultValue }: Props) => {
   const [selectedDate, setSelectedDate] = useState<DateState>();
   const [show, setShow] = useState(false);
 
@@ -39,6 +40,16 @@ export const DateTimeInput = ({ title, mode, onDateChange = () => { } }: Props) 
       onDateChange(formattedDate);
     }
   }, [selectedDate]);
+
+  useEffect(() => {
+    if (!defaultValue) return;
+    if (mode === 'date') {
+      setSelectedDate(parse(defaultValue, 'dd.MM.yyyy', new Date()))
+    }
+    if (mode === 'time') {
+      setSelectedDate(parse(defaultValue, 'HH:mm', new Date()))
+    }
+  }, [defaultValue]);
 
   return (
     <Container onPress={() => setShow(prev => !prev)}>

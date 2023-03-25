@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { YesNoButton } from '@components/YesNoButton';
 import { ButtonsContainer, Container, Title } from './styles';
@@ -11,6 +11,7 @@ type Props = {
   buttonTypes?: [ColorSchemes, ColorSchemes];
   returnValues?: [boolean, boolean];
   onChange?: (value: boolean) => void;
+  defaultValue?: boolean;
 }
 
 export const IsOnDietToggle = ({
@@ -18,7 +19,8 @@ export const IsOnDietToggle = ({
   buttonTitles = ['', ''],
   buttonTypes = ['PRIMARY', 'SECONDARY'],
   onChange = () => { },
-  returnValues = [true, false]
+  returnValues = [true, false],
+  defaultValue
 }: Props) => {
   const [selectedButton, setSelectedButton] = useState('');
 
@@ -26,6 +28,12 @@ export const IsOnDietToggle = ({
     setSelectedButton(button);
     onChange(returnValues[index]);
   };
+
+  useEffect(() => {
+    if (!typeof Boolean) return;
+    const index = returnValues.findIndex(item => item === defaultValue);
+    setSelectedButton(buttonTitles[index]);
+  }, [defaultValue]);
 
   return (
     <Container>
