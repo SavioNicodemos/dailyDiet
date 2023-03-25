@@ -4,6 +4,12 @@ import { Feather } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+type ColorScheme = "PRIMARY" | "SECONDARY";
+
+type Props = {
+  type: ColorScheme;
+};
+
 export const Container = styled(SafeAreaView)`
   flex: 1;
   padding: 24px 24px 0 24px;
@@ -32,24 +38,27 @@ export const AvatarPicture = styled(Image).attrs({
   border-color: ${({ theme }) => theme.COLORS.GRAY_2};
 `;
 
-export const MealsPercentageContainer = styled.View`
+export const MealsPercentageContainer = styled.View<Props>`
   width: 100%;
   padding: 18px;
   margin: 8px 0;
   border-radius: 8px;
 
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({ theme, type }) =>
+    type === "PRIMARY" ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
 `;
 
 export const GoToStatisticsButton = styled.TouchableOpacity`
   z-index: 1;
 `;
 
-export const GoToStatisticsIcon = styled(Feather).attrs(({ theme }) => ({
-  size: 24,
-  color: theme.COLORS.GREEN_DARK,
-  name: "arrow-up-right",
-}))`
+export const GoToStatisticsIcon = styled(Feather).attrs<Props>(
+  ({ theme, type }) => ({
+    size: 24,
+    color: type === "PRIMARY" ? theme.COLORS.GREEN_DARK : theme.COLORS.RED_DARK,
+    name: "arrow-up-right",
+  })
+)`
   align-self: flex-end;
 `;
 

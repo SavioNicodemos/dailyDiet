@@ -12,10 +12,13 @@ import { AppLogo, AvatarPicture, BottomGradient, Container, GoToStatisticsButton
 import { mealsGetAll } from '@storage/meals/mealsGetAll';
 import { AllMealsDTO } from 'src/@dtos/MealDTO';
 import { Loading } from '@components/Loading';
+import { useStatistics } from '@hooks/useStatistics';
 
 export const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [meals, setMeals] = useState<AllMealsDTO>([]);
+
+  const { percentageOnDiet, colorSchemeType } = useStatistics();
   const navigation = useNavigation();
 
   function handleGoToStatistics() {
@@ -47,11 +50,11 @@ export const Home = () => {
         <AvatarPicture source={Logo} />
       </HomeHeader>
 
-      <MealsPercentageContainer>
+      <MealsPercentageContainer type={colorSchemeType}>
         <GoToStatisticsButton onPress={handleGoToStatistics}>
-          <GoToStatisticsIcon />
+          <GoToStatisticsIcon type={colorSchemeType} />
         </GoToStatisticsButton>
-        <PercentageText percentageValue={90.865} style={{ marginTop: -20 }} />
+        <PercentageText percentageValue={percentageOnDiet} style={{ marginTop: -20 }} />
       </MealsPercentageContainer>
 
       <MealListContainer>
