@@ -21,7 +21,7 @@ export const DateTimeInput = ({ title, mode, onDateChange = () => { } }: Props) 
       return null;
     }
     if (mode === 'date') {
-      return format(selectedDate, 'dd/MM/yyyy');
+      return format(selectedDate, 'dd.MM.yyyy');
     }
     if (mode === 'time') {
       return format(selectedDate, 'HH:mm');
