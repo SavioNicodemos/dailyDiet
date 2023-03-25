@@ -1,46 +1,41 @@
-import { useState, useCallback } from 'react';
-import { Alert, SectionList } from 'react-native';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { SectionList } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-import { PercentageText } from '@components/PercentageText';
-import { Button } from '@components/Button';
-import { MealListItem } from '@components/MealListItem';
-import { ListEmpty } from '@components/ListEmpty';
 import Logo from '@assets/Logo.svg';
 
-import { AppLogo, AvatarPicture, BottomGradient, Container, GoToStatisticsButton, GoToStatisticsIcon, HomeHeader, MealDateText, MealListContainer, MealsPercentageContainer, MealTitle, TopGradient } from './styles';
-import { mealsGetAll } from '@storage/meals/mealsGetAll';
-import { AllMealsDTO } from 'src/@dtos/MealDTO';
+import { Button } from '@components/Button';
+import { ListEmpty } from '@components/ListEmpty';
 import { Loading } from '@components/Loading';
+import { MealListItem } from '@components/MealListItem';
+import { PercentageText } from '@components/PercentageText';
+
+import { useMeals } from '@hooks/useMeals';
 import { useStatistics } from '@hooks/useStatistics';
 
-export const Home = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [meals, setMeals] = useState<AllMealsDTO>([]);
+import {
+  AppLogo,
+  AvatarPicture,
+  BottomGradient,
+  Container,
+  GoToStatisticsButton,
+  GoToStatisticsIcon,
+  HomeHeader,
+  MealDateText,
+  MealListContainer,
+  MealsPercentageContainer,
+  MealTitle,
+  TopGradient
+} from './styles';
 
+export const Home = () => {
   const { percentageOnDiet, colorSchemeType } = useStatistics();
+
+  const { meals, loading: isLoading } = useMeals();
   const navigation = useNavigation();
 
   function handleGoToStatistics() {
     navigation.navigate('statistics');
   }
-
-  async function fetchAllMeals() {
-    try {
-      setIsLoading(true);
-      const data = await mealsGetAll();
-      setMeals(data);
-    } catch (error) {
-      console.warn(error)
-      Alert.alert('Refeições', 'Não foi possivel recuperar as refeições');
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  useFocusEffect(useCallback(() => {
-    fetchAllMeals();
-  }, []));
 
   return (
     <Container>
