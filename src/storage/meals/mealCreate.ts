@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import uuid from "react-native-uuid";
-import { parse, compareDesc } from 'date-fns';
+import { parse, compareDesc } from "date-fns";
 
 import { MEAL_COLLECTION } from "@storage/storageConfig";
 import { MealDTO } from "src/@dtos/MealDTO";
@@ -26,13 +26,12 @@ export async function mealCreate(newMeal: MealDTO) {
     }
 
     const sortedDates = meals.sort((a, b) => {
-      const dateA = parse(a.date, 'dd.MM.yyyy', new Date());
-      const dateB = parse(b.date, 'dd.MM.yyyy', new Date());
+      const dateA = parse(a.date, "dd.MM.yyyy", new Date());
+      const dateB = parse(b.date, "dd.MM.yyyy", new Date());
       return compareDesc(dateA, dateB);
     });
 
-    console.log(sortedDates);
-    const storage = JSON.stringify(meals);
+    const storage = JSON.stringify(sortedDates);
     await AsyncStorage.setItem(MEAL_COLLECTION, storage);
   } catch (error) {
     throw error;
