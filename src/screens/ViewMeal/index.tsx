@@ -6,6 +6,7 @@ import { Button } from '@components/Button';
 import { Modal } from '@components/Modal';
 import { useState } from 'react';
 import { useMeals } from '@hooks/useMeals';
+import { Alert } from 'react-native';
 
 type RouteParams = {
   id: string;
@@ -16,13 +17,22 @@ export const ViewMeal = () => {
 
   const navigation = useNavigation();
   const route = useRoute()
-  const { findMealById } = useMeals();
+  const { findMealById, deleteMeal } = useMeals();
 
   const { id } = route.params as RouteParams;
 
   const selectedMeal = findMealById(id);
 
   const colorSchemeType = selectedMeal?.isOnDiet ? 'PRIMARY' : 'SECONDARY';
+
+  async function handleDeleteMeal() {
+    try {
+      await deleteMeal(id);
+      handleGoToHome();
+    } catch (error) {
+      Alert.alert('Refeição', 'Não foi possível deletear a refeição selecionada')
+    }
+  }
 
   function handleOpenModal() {
     setModalVisible(true);
@@ -77,6 +87,7 @@ export const ViewMeal = () => {
         visible={modalVisible}
         message='Deseja realmente excluir o registro de  refeição?'
         onClose={handleCloseModal}
+        onConfirm={handleDeleteMeal}
       />
     </Container>
   )

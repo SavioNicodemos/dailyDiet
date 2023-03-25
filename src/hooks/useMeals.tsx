@@ -10,6 +10,7 @@ import React, {
 import { mealsGetAll } from '@storage/meals/mealsGetAll';
 import { AllMealsDTO, MealDTO } from 'src/@dtos/MealDTO';
 import { mealCreate } from '@storage/meals/mealCreate';
+import { mealDestroy } from '@storage/meals/mealDestroy';
 
 type Props = {
   children?: ReactNode;
@@ -20,6 +21,7 @@ type MealsContextData = {
   meals: AllMealsDTO;
   storeMeal: (meal: MealDTO) => void;
   findMealById: (id: string) => MealDTO | null;
+  deleteMeal: (id: string) => Promise<void>;
 }
 
 const MealsContext = createContext<MealsContextData>({} as MealsContextData);
@@ -53,6 +55,15 @@ const MealsProvider = ({ children }: Props) => {
     return foundMeal;
   }, [meals]);
 
+  const deleteMeal = useCallback(async (id: string) => {
+    try {
+      const updatedMeals = await mealDestroy(id);
+      setMeals(updatedMeals);
+    } catch (error) {
+      throw error;
+    }
+  }, [meals]);
+
   useEffect(() => {
     async function loadStoragedData() {
       const getMeals = await mealsGetAll();
@@ -66,7 +77,7 @@ const MealsProvider = ({ children }: Props) => {
 
   return (
     <MealsContext.Provider
-      value={{ loading, meals, storeMeal, findMealById }}
+      value={{ loading, meals, storeMeal, findMealById, deleteMeal }}
     >
       {children}
     </MealsContext.Provider>
