@@ -15,6 +15,14 @@ export async function mealCreate(receivedMeals: AllMealsDTO, newMeal: MealDTO) {
 
     if (index > -1) {
       meals[index].data.push(newMealToAdd);
+
+      const sortedMealsByTimeInDate = meals[index].data.sort((a, b) => {
+        const dateA = parse(a.time, "HH:mm", new Date());
+        const dateB = parse(b.time, "HH:mm", new Date());
+        return compareDesc(dateA, dateB);
+      });
+
+      meals[index].data = sortedMealsByTimeInDate;
     } else {
       meals.push({
         date: newMealToAdd.date,
