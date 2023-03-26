@@ -33,7 +33,7 @@ const MealsProvider = ({ children }: Props) => {
 
   const storeMeal = useCallback(async (meal: MealDTO) => {
     try {
-      const updatedMeals = await mealCreate(meal);
+      const updatedMeals = await mealCreate(meals, meal);
       setMeals(updatedMeals);
     } catch (error) {
       throw error;
@@ -58,7 +58,7 @@ const MealsProvider = ({ children }: Props) => {
 
   const deleteMeal = useCallback(async (id: string) => {
     try {
-      const updatedMeals = await mealDestroy(id);
+      const updatedMeals = await mealDestroy(meals, id);
       setMeals(updatedMeals);
     } catch (error) {
       throw error;
@@ -68,9 +68,9 @@ const MealsProvider = ({ children }: Props) => {
   const updateMeal = useCallback(async (meal: MealDTO) => {
     try {
       if (meal.id)
-        await mealDestroy(meal.id);
+        await mealDestroy(meals, meal.id);
 
-      const updatedMeals = await mealCreate(meal);
+      const updatedMeals = await mealCreate(meals, meal);
 
       setMeals(updatedMeals);
     } catch (error) {

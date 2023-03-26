@@ -3,14 +3,11 @@ import uuid from "react-native-uuid";
 import { parse, compareDesc } from "date-fns";
 
 import { MEAL_COLLECTION } from "@storage/storageConfig";
-import { MealDTO } from "src/@dtos/MealDTO";
-import { mealsGetAll } from "./mealsGetAll";
+import { AllMealsDTO, MealDTO } from "src/@dtos/MealDTO";
 
-export async function mealCreate(newMeal: MealDTO) {
+export async function mealCreate(receivedMeals: AllMealsDTO, newMeal: MealDTO) {
   try {
-    const getMeals = await mealsGetAll();
-
-    const meals = [...getMeals];
+    const meals = [...receivedMeals];
 
     const index = meals.findIndex((meal) => meal.date === newMeal.date);
 

@@ -1,13 +1,9 @@
 import React, {
   createContext,
   useContext,
-  useState,
-  useEffect,
   ReactNode,
   useMemo,
 } from 'react';
-import { mealsGetAll } from '@storage/meals/mealsGetAll';
-import { AllMealsDTO } from 'src/@dtos/MealDTO';
 import { getMaximumStreak, getMealsOnOffDiet, isTolerable } from '@utils/statistics';
 import { useMeals } from './useMeals';
 
