@@ -14,7 +14,7 @@ export async function mealCreate(newMeal: MealDTO) {
 
     const index = meals.findIndex((meal) => meal.date === newMeal.date);
 
-    const newMealToAdd = { id: JSON.stringify(uuid.v4()), ...newMeal };
+    const newMealToAdd = { ...newMeal, id: JSON.stringify(uuid.v4()) };
 
     if (index > -1) {
       meals[index].data.push(newMealToAdd);
