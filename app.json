@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "dailyDiet",
-    "slug": "dailyDiet",
+    "name": "Daily Diet",
+    "slug": "daily-diet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,6 +18,7 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.savionicodemos.dailydiet",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -25,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "6e95d9a2-1690-403c-ae3d-b5f26c7559ec"
+      }
+    },
+    "owner": "savionicodemos"
   }
 }
