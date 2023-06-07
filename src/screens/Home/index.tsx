@@ -2,6 +2,7 @@ import { Alert, SectionList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import Logo from '@assets/Logo.svg';
+import Avatar from '@assets/ForkKnife.svg';
 
 import { Button } from '@components/Button';
 import { ListEmpty } from '@components/ListEmpty';
@@ -49,7 +50,7 @@ export const Home = () => {
 
       <HomeHeader>
         <AppLogo source={Logo} />
-        <AvatarPicture source={Logo} />
+        <AvatarPicture source={Avatar} />
       </HomeHeader>
 
       <MealsPercentageContainer type={colorSchemeType}>
