@@ -27,6 +27,9 @@
       ],
       "@routes/*": [
         "./src/routes/*"
+      ],
+      "@langs/*": [
+        "./src/langs/*"
       ]
     }
   }

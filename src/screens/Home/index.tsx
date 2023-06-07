@@ -27,6 +27,7 @@ import {
   MealTitle,
   TopGradient
 } from './styles';
+import { i18n } from '@langs/i18n';
 
 export const Home = () => {
   const { percentageOnDiet, colorSchemeType } = useStatistics();
@@ -68,7 +69,7 @@ export const Home = () => {
         <Button
           onPress={() => navigation.navigate('newMeal', {})}
           icon='plus'
-          title='Nova refeição'
+          title={i18n.t('newMeal')}
         />
 
         <TopGradient />
