@@ -1,5 +1,18 @@
 {
   "en": {
-  "newMeal": "New meal"
+    "pages": {
+      "home": {
+        "meal": "Meal",
+        "meals": "Meals",
+        "noValidId": "This meal don't have a valid ID.",
+        "newMeal": "New meal",
+        "noAddedMeals": "No meals added yet. How about adding some to start with?"
+      }
+    },
+    "components": {
+      "percentageText" : {
+        "subtitle": "of meals in the diet"
+      }
+    }
   }
 }

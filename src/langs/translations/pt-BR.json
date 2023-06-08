@@ -1,5 +1,18 @@
 {
   "pt-BR": {
-    "newMeal": "Nova Refeição"
+    "pages": {
+      "home": {
+        "meal": "Refeição",
+        "meals": "Refeições",
+        "noValidId": "Refeição não possui um id válido.",
+        "newMeal": "Nova refeição",
+        "noAddedMeals": "Sem refeições adicionadas ainda. Que tal adicionar alguma para começar?"
+      }
+    },
+    "components": {
+      "percentageText" : {
+        "subtitle": "das refeições dentro da dieta"
+      }
+    }
   }
 }

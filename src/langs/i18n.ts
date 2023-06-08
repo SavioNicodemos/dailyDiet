@@ -13,4 +13,6 @@ i18n.enableFallback = true;
 i18n.defaultLocale = 'en';
 i18n.locale = Localization.locale;
 
+i18n.missingBehavior = 'error';
+
 export { i18n };
