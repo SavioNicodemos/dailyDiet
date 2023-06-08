@@ -1,0 +1,73 @@
+{
+  "pt-BR": {
+    "pages": {
+      "home": {
+        "meal": "Refeição",
+        "meals": "Refeições",
+        "noValidId": "Refeição não possui um id válido.",
+        "newMeal": "Nova refeição",
+        "noAddedMeals": "Sem refeições adicionadas ainda. Que tal adicionar alguma para começar?"
+      },
+      "newMeal": {
+        "newMeal": "Nova refeição",
+        "editMeal": "Editar refeição",
+        "name": "Nome",
+        "description": "Descrição",
+        "date": "Data",
+        "time": "Hora",
+        "isOnDiet": "Está dentro da dieta?",
+        "yes": "Sim",
+        "no": "Não",
+        "register": "Cadastrar Refeição",
+        "save": "Salvar Alterações"
+      },
+      "finishedRegistration": {
+        "positive": {
+          "title": "Continue assim!",
+          "firstMessage": "Você continua",
+          "boldText": "dentro da dieta.",
+          "lastMessage": "Muito bem!"
+        },
+        "negative": {
+          "title": "Que pena!",
+          "firstMessage": "Você",
+          "boldText": "saiu da dieta",
+          "lastMessage": "dessa vez, mas continue se esforçando e não desista!"
+        },
+        "goToHome": "Ir para a página principal"
+      },
+      "statistics": {
+        "title": "Estatísticas Gerais",
+        "streak": "melhor sequência de pratos dentro da dieta",
+        "registered": "refeições registradas",
+        "onDiet": "refeições dentro da dieta",
+        "offDiet": "refeições fora da dieta"
+      },
+      "viewMeal": {
+        "meal": "Refeição",
+        "dateAndTime": "Data e hora",
+        "at": "às",
+        "onDiet": "dentro da dieta",
+        "offDiet": "fora da dieta",
+        "editMeal": "Editar refeição",
+        "deleteMeal": "Deletar Refeição",
+        "confirmDelete": "Deseja realmente excluir o registro de refeição?"
+      }
+    },
+    "components": {
+      "percentageText" : {
+        "subtitle": "das refeições dentro da dieta"
+      },
+      "modal": {
+        "cancel": "Cancelar",
+        "confirm": "Sim, excluir"
+      }
+    },
+    "errors": {
+      "invalid": "Inválido",
+      "fillAllFields": "Por favor preencha todos os campos do formulário.",
+      "newMeal": "Nova refeição",
+      "createNewMeal": "Erro ao criar nova refeição."
+    }
+  }
+}

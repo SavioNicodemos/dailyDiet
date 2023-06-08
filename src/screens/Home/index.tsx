@@ -27,6 +27,7 @@ import {
   MealTitle,
   TopGradient
 } from './styles';
+import { i18n } from '@langs/i18n';
 
 export const Home = () => {
   const { percentageOnDiet, colorSchemeType } = useStatistics();
@@ -38,7 +39,7 @@ export const Home = () => {
     if (id) {
       return navigation.navigate('viewMeal', { id: id })
     }
-    return Alert.alert("Refeição", 'Refeição sem ID válido');
+    return Alert.alert(i18n.t('pages.home.meal'), i18n.t('pages.home.noValidId'));
   }
 
   function handleGoToStatistics() {
@@ -62,13 +63,13 @@ export const Home = () => {
 
       <MealListContainer>
         <MealTitle>
-          Refeições
+          {i18n.t('pages.home.meals')}
         </MealTitle>
 
         <Button
           onPress={() => navigation.navigate('newMeal', {})}
           icon='plus'
-          title='Nova refeição'
+          title={i18n.t('pages.home.newMeal')}
         />
 
         <TopGradient />
@@ -85,7 +86,7 @@ export const Home = () => {
             renderItem={({ item }) => (
               <MealListItem time={item.time} name={item.name} isOnDiet={item.isOnDiet} onPress={() => handleViewMeal(item.id)} />
             )}
-            ListEmptyComponent={<ListEmpty message='Sem refeições adicionadas ainda. Que tal adicionar alguma para começar?' />}
+            ListEmptyComponent={<ListEmpty message={i18n.t('pages.home.noAddedMeals')} />}
             contentContainerStyle={meals.length === 0 ? { flex: 1 } : { paddingBottom: 50 }}
             showsVerticalScrollIndicator={false}
           />

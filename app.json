@@ -32,6 +32,9 @@
         "projectId": "6e95d9a2-1690-403c-ae3d-b5f26c7559ec"
       }
     },
-    "owner": "savionicodemos"
+    "owner": "savionicodemos",
+    "plugins": [
+      "expo-localization"
+    ]
   }
 }

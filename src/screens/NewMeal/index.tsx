@@ -11,6 +11,7 @@ import { IsOnDietToggle } from '@components/IsOnDietToggle';
 import { Container, Content, DateTimeContainer, Form } from './styles';
 import { useMeals } from '@hooks/useMeals';
 import { MealDTO } from 'src/@dtos/MealDTO';
+import { i18n } from '@langs/i18n';
 
 type AddUpdateMeal = {
   id?: string;
@@ -52,12 +53,12 @@ export const NewMeal = () => {
   async function handleSubmitMeal() {
     try {
       if (meal.isOnDiet === undefined) {
-        return Alert.alert('Inválido', 'Por favor, preencha todos os campos do formulário!')
+        return Alert.alert(i18n.t('errors.invalid'), i18n.t('errors.fillAllFields'))
       };
 
       const isValid = meal.name && meal.description && meal.date && meal.time;
       if (!isValid) {
-        Alert.alert('Inválido', 'Por favor, preencha todos os campos do formulário!')
+        Alert.alert(i18n.t('errors.invalid'), i18n.t('errors.fillAllFields'))
       }
 
       if (isEditMode) {
@@ -71,7 +72,7 @@ export const NewMeal = () => {
       await storeMeal(meal as MealDTO);
       navigation.navigate('finishedRegistration', { isOnDiet: meal.isOnDiet })
     } catch (error) {
-      Alert.alert('Nova refeição', 'Erro ao criar nova refeição!')
+      Alert.alert(i18n.t('errors.newMeal'), i18n.t('errors.createNewMeal'))
     }
   }
 
@@ -87,7 +88,7 @@ export const NewMeal = () => {
   return (
     <Container>
       <Header
-        title={isEditMode ? 'Editar refeição' : 'Nova refeição'}
+        title={isEditMode ? i18n.t('pages.newMeal.editMeal') : i18n.t('pages.newMeal.newMeal')}
         onBackPress={handleGoBack}
         style={{ paddingHorizontal: 24 }}
       />
@@ -95,13 +96,13 @@ export const NewMeal = () => {
       <Content>
         <Form>
           <Input
-            title='Nome'
+            title={i18n.t('pages.newMeal.name')}
             onChangeText={name => setMeal(prev => ({ ...prev, name }))}
             defaultValue={meal.name}
           />
 
           <Input
-            title='Descrição'
+            title={i18n.t('pages.newMeal.description')}
             multiline
             numberOfLines={5}
             onChangeText={description => setMeal(prev => ({ ...prev, description }))}
@@ -110,13 +111,13 @@ export const NewMeal = () => {
 
           <DateTimeContainer>
             <DateTimeInput
-              title='Data'
+              title={i18n.t('pages.newMeal.date')}
               mode='date'
               onDateChange={date => setMeal(prev => ({ ...prev, date }))}
               defaultValue={meal.date}
             />
             <DateTimeInput
-              title='Hora'
+              title={i18n.t('pages.newMeal.time')}
               mode='time'
               onDateChange={time => setMeal(prev => ({ ...prev, time }))}
               defaultValue={meal.time}
@@ -124,15 +125,15 @@ export const NewMeal = () => {
           </DateTimeContainer>
 
           <IsOnDietToggle
-            title='Está dentro da dieta?'
-            buttonTitles={['Sim', 'Não']}
+            title={i18n.t('pages.newMeal.isOnDiet')}
+            buttonTitles={[i18n.t('pages.newMeal.yes'), i18n.t('pages.newMeal.no')]}
             onChange={isOnDiet => setMeal(prev => ({ ...prev, isOnDiet }))}
             defaultValue={meal.isOnDiet}
           />
         </Form>
 
         <Button
-          title={isEditMode ? 'Salvar alterações' : 'Cadastrar Refeição'}
+          title={isEditMode ? i18n.t('pages.newMeal.save') : i18n.t('pages.newMeal.register')}
           style={{ marginVertical: 24 }}
           onPress={() => handleSubmitMeal()}
         />
