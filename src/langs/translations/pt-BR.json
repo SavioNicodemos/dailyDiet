@@ -20,6 +20,21 @@
         "no": "Não",
         "register": "Cadastrar Refeição",
         "save": "Salvar Alterações"
+      },
+      "finishedRegistration": {
+        "positive": {
+          "title": "Continue assim!",
+          "firstMessage": "Você continua",
+          "boldText": "dentro da dieta.",
+          "lastMessage": "Muito bem!"
+        },
+        "negative": {
+          "title": "Que pena!",
+          "firstMessage": "Você",
+          "boldText": "saiu da dieta",
+          "lastMessage": "dessa vez, mas continue se esforçando e não desista!"
+        },
+        "goToHome": "Ir para a página principal"
       }
     },
     "components": {

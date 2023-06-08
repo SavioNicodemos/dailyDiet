@@ -20,6 +20,21 @@
         "no": "No",
         "register": "Register Meal",
         "save": "Save Changes"
+      },
+      "finishedRegistration": {
+        "positive": {
+          "title": "Keep it up!",
+          "firstMessage": "You are still",
+          "boldText": "on the diet.",
+          "lastMessage": "Very good!"
+        },
+        "negative": {
+          "title": "That sad!",
+          "firstMessage": "You",
+          "boldText": "got off the diet",
+          "lastMessage": "this time, but keep pushing and don't give up!"
+        },
+        "goToHome": "Go to home"
       }
     },
     "components": {
