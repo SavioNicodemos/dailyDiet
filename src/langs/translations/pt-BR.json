@@ -42,11 +42,25 @@
         "registered": "refeições registradas",
         "onDiet": "refeições dentro da dieta",
         "offDiet": "refeições fora da dieta"
+      },
+      "viewMeal": {
+        "meal": "Refeição",
+        "dateAndTime": "Data e hora",
+        "at": "às",
+        "onDiet": "dentro da dieta",
+        "offDiet": "fora da dieta",
+        "editMeal": "Editar refeição",
+        "deleteMeal": "Deletar Refeição",
+        "confirmDelete": "Deseja realmente excluir o registro de refeição?"
       }
     },
     "components": {
       "percentageText" : {
         "subtitle": "das refeições dentro da dieta"
+      },
+      "modal": {
+        "cancel": "Cancelar",
+        "confirm": "Sim, excluir"
       }
     },
     "errors": {
