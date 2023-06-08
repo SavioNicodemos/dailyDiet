@@ -7,12 +7,31 @@
         "noValidId": "Refeição não possui um id válido.",
         "newMeal": "Nova refeição",
         "noAddedMeals": "Sem refeições adicionadas ainda. Que tal adicionar alguma para começar?"
+      },
+      "newMeal": {
+        "newMeal": "Nova refeição",
+        "editMeal": "Editar refeição",
+        "name": "Nome",
+        "description": "Descrição",
+        "date": "Data",
+        "time": "Hora",
+        "isOnDiet": "Está dentro da dieta?",
+        "yes": "Sim",
+        "no": "Não",
+        "register": "Cadastrar Refeição",
+        "save": "Salvar Alterações"
       }
     },
     "components": {
       "percentageText" : {
         "subtitle": "das refeições dentro da dieta"
       }
+    },
+    "errors": {
+      "invalid": "Inválido",
+      "fillAllFields": "Por favor preencha todos os campos do formulário.",
+      "newMeal": "Nova refeição",
+      "createNewMeal": "Erro ao criar nova refeição."
     }
   }
 }

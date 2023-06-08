@@ -7,12 +7,31 @@
         "noValidId": "This meal don't have a valid ID.",
         "newMeal": "New meal",
         "noAddedMeals": "No meals added yet. How about adding some to start with?"
+      },
+      "newMeal": {
+        "newMeal": "New meal",
+        "editMeal": "Edit meal",
+        "name": "Name",
+        "description": "Description",
+        "date": "Date",
+        "time": "Time",
+        "isOnDiet": "Is on diet?",
+        "yes": "Yes",
+        "no": "No",
+        "register": "Register Meal",
+        "save": "Save Changes"
       }
     },
     "components": {
       "percentageText" : {
         "subtitle": "of meals in the diet"
       }
+    },
+    "errors": {
+      "invalid": "Invalid",
+      "fillAllFields": "Please fill all fields in the form",
+      "newMeal": "New meal",
+      "createNewMeal": "Error to create a new meal"
     }
   }
 }
