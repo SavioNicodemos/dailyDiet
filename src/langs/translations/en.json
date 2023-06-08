@@ -35,6 +35,13 @@
           "lastMessage": "this time, but keep pushing and don't give up!"
         },
         "goToHome": "Go to home"
+      },
+      "statistics": {
+        "title": "General Statistics",
+        "streak": "best streak of dishes within the diet",
+        "registered": "registered meals",
+        "onDiet": "meals on the diet",
+        "offDiet": "meals off the diet"
       }
     },
     "components": {

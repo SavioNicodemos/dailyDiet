@@ -35,6 +35,13 @@
           "lastMessage": "dessa vez, mas continue se esforçando e não desista!"
         },
         "goToHome": "Ir para a página principal"
+      },
+      "statistics": {
+        "title": "Estatísticas Gerais",
+        "streak": "melhor sequência de pratos dentro da dieta",
+        "registered": "refeições registradas",
+        "onDiet": "refeições dentro da dieta",
+        "offDiet": "refeições fora da dieta"
       }
     },
     "components": {

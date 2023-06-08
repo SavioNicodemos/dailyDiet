@@ -35,6 +35,7 @@ export const StatisticsTitle = styled.Text`
 `;
 
 export const OnAndOffDietContainer = styled.View`
+  justify-content: space-between;
   flex-direction: row;
   gap: 12px;
 `;
