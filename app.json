@@ -2,7 +2,11 @@
   "expo": {
     "name": "Daily Diet",
     "slug": "daily-diet",
+    "owner": "savionicodemos",
     "version": "1.0.0",
+    "plugins": [
+      "expo-localization"
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,7 +22,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.savionicodemos.dailydiet",
+      "package": "dev.nicodemos.dailydiet",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -31,10 +35,6 @@
       "eas": {
         "projectId": "6e95d9a2-1690-403c-ae3d-b5f26c7559ec"
       }
-    },
-    "owner": "savionicodemos",
-    "plugins": [
-      "expo-localization"
-    ]
+    }
   }
 }
