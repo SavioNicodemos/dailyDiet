@@ -63,10 +63,8 @@ export const NewMeal = () => {
 
       if (isEditMode) {
         await updateMeal(meal as MealDTO);
-        if (meal.id) {
-          return navigation.navigate('viewMeal', { id: meal.id })
-        }
         navigation.navigate('home');
+        return;
       }
 
       await storeMeal(meal as MealDTO);
