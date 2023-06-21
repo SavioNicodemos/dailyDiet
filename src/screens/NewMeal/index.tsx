@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Button } from '@components/Button';
@@ -8,7 +8,7 @@ import { Header } from '@components/Header';
 import { Input } from '@components/Input';
 import { IsOnDietToggle } from '@components/IsOnDietToggle';
 
-import { Container, Content, DateTimeContainer, Form } from './styles';
+import { Container, Content, DateTimeContainer } from './styles';
 import { useMeals } from '@hooks/useMeals';
 import { MealDTO } from 'src/@dtos/MealDTO';
 import { i18n } from '@langs/i18n';
@@ -92,43 +92,43 @@ export const NewMeal = () => {
       />
 
       <Content>
-        <Form>
-          <Input
-            title={i18n.t('pages.newMeal.name')}
-            onChangeText={name => setMeal(prev => ({ ...prev, name }))}
-            defaultValue={meal.name}
-          />
+        <Input
+          title={i18n.t('pages.newMeal.name')}
+          onChangeText={name => setMeal(prev => ({ ...prev, name }))}
+          defaultValue={meal.name}
+        />
 
-          <Input
-            title={i18n.t('pages.newMeal.description')}
-            multiline
-            numberOfLines={5}
-            onChangeText={description => setMeal(prev => ({ ...prev, description }))}
-            defaultValue={meal.description}
-          />
+        <Input
+          title={i18n.t('pages.newMeal.description')}
+          multiline
+          numberOfLines={5}
+          onChangeText={description => setMeal(prev => ({ ...prev, description }))}
+          defaultValue={meal.description}
+        />
 
-          <DateTimeContainer>
-            <DateTimeInput
-              title={i18n.t('pages.newMeal.date')}
-              mode='date'
-              onDateChange={date => setMeal(prev => ({ ...prev, date }))}
-              defaultValue={meal.date}
-            />
-            <DateTimeInput
-              title={i18n.t('pages.newMeal.time')}
-              mode='time'
-              onDateChange={time => setMeal(prev => ({ ...prev, time }))}
-              defaultValue={meal.time}
-            />
-          </DateTimeContainer>
-
-          <IsOnDietToggle
-            title={i18n.t('pages.newMeal.isOnDiet')}
-            buttonTitles={[i18n.t('pages.newMeal.yes'), i18n.t('pages.newMeal.no')]}
-            onChange={isOnDiet => setMeal(prev => ({ ...prev, isOnDiet }))}
-            defaultValue={meal.isOnDiet}
+        <DateTimeContainer>
+          <DateTimeInput
+            title={i18n.t('pages.newMeal.date')}
+            mode='date'
+            onDateChange={date => setMeal(prev => ({ ...prev, date }))}
+            defaultValue={meal.date}
           />
-        </Form>
+          <DateTimeInput
+            title={i18n.t('pages.newMeal.time')}
+            mode='time'
+            onDateChange={time => setMeal(prev => ({ ...prev, time }))}
+            defaultValue={meal.time}
+          />
+        </DateTimeContainer>
+
+        <IsOnDietToggle
+          title={i18n.t('pages.newMeal.isOnDiet')}
+          buttonTitles={[i18n.t('pages.newMeal.yes'), i18n.t('pages.newMeal.no')]}
+          onChange={isOnDiet => setMeal(prev => ({ ...prev, isOnDiet }))}
+          defaultValue={meal.isOnDiet}
+        />
+
+        <View style={{ flex: 1 }} />
 
         <Button
           title={isEditMode ? i18n.t('pages.newMeal.save') : i18n.t('pages.newMeal.register')}
