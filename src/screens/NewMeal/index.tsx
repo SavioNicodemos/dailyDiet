@@ -58,7 +58,7 @@ export const NewMeal = () => {
 
       const isValid = meal.name && meal.description && meal.date && meal.time;
       if (!isValid) {
-        Alert.alert(i18n.t('errors.invalid'), i18n.t('errors.fillAllFields'))
+        return Alert.alert(i18n.t('errors.invalid'), i18n.t('errors.fillAllFields'))
       }
 
       if (isEditMode) {
