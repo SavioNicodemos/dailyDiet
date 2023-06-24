@@ -10,7 +10,7 @@ import { IsOnDietToggle } from '@components/IsOnDietToggle';
 
 import { Container, Content, DateTimeContainer } from './styles';
 import { useMeals } from '@hooks/useMeals';
-import { MealDTO } from 'src/@dtos/MealDTO';
+import { MealDTO, MealWithIdDTO } from 'src/@dtos/MealDTO';
 import { i18n } from '@langs/i18n';
 
 type AddUpdateMeal = {
@@ -62,8 +62,8 @@ export const NewMeal = () => {
       }
 
       if (isEditMode) {
-        await updateMeal(meal as MealDTO);
-        navigation.navigate('home');
+        await updateMeal(meal as MealWithIdDTO);
+        navigation.navigate('viewMeal', { id: (meal as MealWithIdDTO).id });
         return;
       }
 

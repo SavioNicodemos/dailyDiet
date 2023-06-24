@@ -38,7 +38,7 @@ export const AvatarPicture = styled(Image).attrs({
   border-color: ${({ theme }) => theme.COLORS.GRAY_2};
 `;
 
-export const MealsPercentageContainer = styled.View<Props>`
+export const MealsPercentageContainer = styled.TouchableOpacity<Props>`
   width: 100%;
   padding: 18px;
   margin: 8px 0;
@@ -48,7 +48,7 @@ export const MealsPercentageContainer = styled.View<Props>`
     type === "PRIMARY" ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
 `;
 
-export const GoToStatisticsButton = styled.TouchableOpacity`
+export const GoToStatisticsContainer = styled.View`
   z-index: 1;
 `;
 

@@ -1,47 +1,36 @@
-import { AllMealsDTO } from "src/@dtos/MealDTO";
+import { MealWithIdDTO } from "src/@dtos/MealDTO";
 
-export function getMaximumStreak(meals: AllMealsDTO) {
+export function getMaximumStreak(meals: MealWithIdDTO[]) {
   let maxStreak = 0;
   let currentStreak = 0;
 
-  for (let i = 0; i < meals.length; i++) {
-    const dateData = meals[i].data;
-    for (let j = 0; j < dateData.length; j++) {
-      const meal = dateData[j];
-      if (meal.isOnDiet) {
-        currentStreak++;
-        if (currentStreak > maxStreak) {
-          maxStreak = currentStreak;
-        }
-      } else {
-        currentStreak = 0;
+  meals.forEach((meal) => {
+    if (meal.isOnDiet) {
+      currentStreak++;
+      if (currentStreak > maxStreak) {
+        maxStreak = currentStreak;
       }
+    } else {
+      currentStreak = 0;
     }
-  }
+  });
 
   return maxStreak;
 }
 
-export function getMealsOnOffDiet(meals: AllMealsDTO) {
-  let allMeals = 0;
+export function getMealsOnOffDiet(meals: MealWithIdDTO[]) {
   let mealsOnDiet = 0;
   let mealsOffDiet = 0;
 
-  for (let i = 0; i < meals.length; i++) {
-    const dateData = meals[i].data;
-    for (let j = 0; j < dateData.length; j++) {
-      const meal = dateData[j];
-      if (meal.isOnDiet) {
-        mealsOnDiet++;
-        allMeals++;
-      } else {
-        mealsOffDiet++;
-        allMeals++;
-      }
+  meals.forEach((meal) => {
+    if (meal.isOnDiet) {
+      mealsOnDiet++;
+    } else {
+      mealsOffDiet++;
     }
-  }
+  });
 
-  return [allMeals, mealsOnDiet, mealsOffDiet];
+  return [meals.length, mealsOnDiet, mealsOffDiet];
 }
 
 export function isTolerable(percentage: number) {

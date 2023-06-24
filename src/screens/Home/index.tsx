@@ -18,7 +18,7 @@ import {
   AvatarPicture,
   BottomGradient,
   Container,
-  GoToStatisticsButton,
+  GoToStatisticsContainer,
   GoToStatisticsIcon,
   HomeHeader,
   MealDateText,
@@ -32,7 +32,7 @@ import { i18n } from '@langs/i18n';
 export const Home = () => {
   const { percentageOnDiet, colorSchemeType } = useStatistics();
 
-  const { meals, loading: isLoading } = useMeals();
+  const { mealsBySection, loading: isLoading } = useMeals();
   const navigation = useNavigation();
 
   function handleViewMeal(id: string | undefined) {
@@ -54,10 +54,10 @@ export const Home = () => {
         <AvatarPicture source={Avatar} />
       </HomeHeader>
 
-      <MealsPercentageContainer type={colorSchemeType}>
-        <GoToStatisticsButton onPress={handleGoToStatistics}>
+      <MealsPercentageContainer type={colorSchemeType} onPress={handleGoToStatistics} activeOpacity={0.7}>
+        <GoToStatisticsContainer>
           <GoToStatisticsIcon type={colorSchemeType} />
-        </GoToStatisticsButton>
+        </GoToStatisticsContainer>
         <PercentageText percentageValue={percentageOnDiet} style={{ marginTop: -20 }} />
       </MealsPercentageContainer>
 
@@ -77,7 +77,7 @@ export const Home = () => {
           <Loading />
           :
           <SectionList
-            sections={meals}
+            sections={mealsBySection}
             style={{ paddingTop: 24, flex: 1 }}
             keyExtractor={(item, index) => item.name + index}
             renderSectionHeader={({ section: { date } }) => (
@@ -87,7 +87,7 @@ export const Home = () => {
               <MealListItem time={item.time} name={item.name} isOnDiet={item.isOnDiet} onPress={() => handleViewMeal(item.id)} />
             )}
             ListEmptyComponent={<ListEmpty message={i18n.t('pages.home.noAddedMeals')} />}
-            contentContainerStyle={meals.length === 0 ? { flex: 1 } : { paddingBottom: 50 }}
+            contentContainerStyle={mealsBySection.length === 0 ? { flex: 1 } : { paddingBottom: 50 }}
             showsVerticalScrollIndicator={false}
           />
         }
