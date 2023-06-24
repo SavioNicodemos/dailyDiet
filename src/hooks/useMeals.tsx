@@ -1,4 +1,4 @@
-import React, {
+import {
   createContext,
   useContext,
   useState,
@@ -21,7 +21,7 @@ type MealsContextData = {
   loading: boolean;
   meals: MealWithIdDTO[];
   mealsBySection: MealSectionListDTO;
-  storeMeal: (meal: MealDTO) => void;
+  storeMeal: (meal: MealDTO) => Promise<void>;
   findMealById: (id: string) => MealDTO | null;
   deleteMeal: (id: string) => Promise<void>;
   updateMeal: (meal: MealWithIdDTO) => Promise<void>;
