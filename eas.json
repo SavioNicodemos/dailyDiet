@@ -12,7 +12,12 @@
     "preview": {
       "distribution": "internal"
     },
+    "staging": {
+      "distribution": "store",
+      "autoIncrement": true
+    },
     "production": {
+      "distribution": "store",
       "autoIncrement": true
     }
   },
@@ -20,6 +25,13 @@
     "production": {
       "android": {
         "track": "production",
+        "releaseStatus": "completed",
+        "serviceAccountKeyPath": "./.expo/pc-api-5772855197851813829-497-baf767522ef9.json"
+      }
+    },
+    "staging": {
+      "android": {
+        "track": "internal",
         "releaseStatus": "draft",
         "serviceAccountKeyPath": "./.expo/pc-api-5772855197851813829-497-baf767522ef9.json"
       }
