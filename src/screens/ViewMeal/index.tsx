@@ -7,6 +7,7 @@ import { Modal } from '@components/Modal';
 import { useState } from 'react';
 import { useMeals } from '@hooks/useMeals';
 import { Alert } from 'react-native';
+import { i18n } from '@langs/i18n';
 
 type RouteParams = {
   id: string;
@@ -30,7 +31,7 @@ export const ViewMeal = () => {
       await deleteMeal(id);
       handleGoToHome();
     } catch (error) {
-      Alert.alert('Refeição', 'Não foi possível deletear a refeição selecionada')
+      Alert.alert(i18n.t('errors.meal'), i18n.t('errors.deleteMeal'))
     }
   }
 
@@ -52,7 +53,7 @@ export const ViewMeal = () => {
   return (
     <Container type={colorSchemeType}>
       <Header
-        title='Refeição'
+        title={i18n.t('pages.viewMeal.meal')}
         onBackPress={handleGoToHome}
         style={{ paddingHorizontal: 24 }}
       />
@@ -69,27 +70,27 @@ export const ViewMeal = () => {
           </Description>
 
           <DateTitle>
-            Data e hora
+            {i18n.t('pages.viewMeal.dateAndTime')}
           </DateTitle>
           <DatetimeText>
-            {selectedMeal?.date} às {selectedMeal?.time}
+            {selectedMeal?.date} {i18n.t('pages.viewMeal.at')} {selectedMeal?.time}
           </DatetimeText>
 
           <OnDietContainer>
             <Indicator type={colorSchemeType} />
             <OnDietText>
-              {selectedMeal?.isOnDiet ? 'dentro' : 'fora'} da dieta
+              {selectedMeal?.isOnDiet ? i18n.t('pages.viewMeal.onDiet') : i18n.t('pages.viewMeal.offDiet')}
             </OnDietText>
           </OnDietContainer>
         </ItemDetails>
         <Footer>
-          <Button title="Editar refeição" icon='edit-3' onPress={handleEditMeal} />
-          <Button type='SECONDARY' title="Excluir Refeição" icon='trash-2' onPress={handleOpenModal} />
+          <Button title={i18n.t('pages.viewMeal.editMeal')} icon='edit-3' onPress={handleEditMeal} />
+          <Button type='SECONDARY' title={i18n.t('pages.viewMeal.deleteMeal')} icon='trash-2' onPress={handleOpenModal} />
         </Footer>
       </Content>
       <Modal
         visible={modalVisible}
-        message='Deseja realmente excluir o registro de  refeição?'
+        message={i18n.t('pages.viewMeal.confirmDelete')}
         onClose={handleCloseModal}
         onConfirm={handleDeleteMeal}
       />

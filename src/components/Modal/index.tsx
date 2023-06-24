@@ -1,6 +1,7 @@
 import { Button } from '@components/Button';
-import { Modal as ModalRN, Text, TouchableOpacity, View } from 'react-native';
+import { Modal as ModalRN } from 'react-native';
 import { Body, ButtonsContainer, Container, Message } from './styles';
+import { i18n } from '@langs/i18n';
 
 type Props = {
   visible: boolean;
@@ -33,8 +34,8 @@ export const Modal = ({
         <Body>
           <Message>{message}</Message>
           <ButtonsContainer>
-            <Button title='Cancelar' type='SECONDARY' onPress={handleCancelPress} />
-            <Button title='Sim, excluir' type='PRIMARY' onPress={handleConfirmPress} />
+            <Button title={i18n.t('components.modal.cancel')} type='SECONDARY' onPress={handleCancelPress} />
+            <Button title={i18n.t('components.modal.confirm')} type='PRIMARY' onPress={handleConfirmPress} />
           </ButtonsContainer>
         </Body>
       </Container>

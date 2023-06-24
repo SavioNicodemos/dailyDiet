@@ -13,11 +13,7 @@ export const Content = styled.View`
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   padding: 32px 24px 0 24px;
-`;
-
-export const Form = styled.View`
-  flex: 1;
-  gap: 30px;
+gap: 30px;
 `;
 
 export const DateTimeContainer = styled.View`
