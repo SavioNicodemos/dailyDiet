@@ -35,7 +35,6 @@ const MealsProvider = ({ children }: Props) => {
 
   const mealsBySection: MealSectionListDTO = useMemo(() => {
     if (!meals.length) return [];
-    console.log('meals', meals);
     const sortedList = meals.sort((a, b) => getTimestamp(b) - getTimestamp(a));
 
     const groupedList: MealSectionListDTO = [];
