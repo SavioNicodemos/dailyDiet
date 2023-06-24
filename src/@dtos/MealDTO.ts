@@ -7,9 +7,9 @@ export type MealDTO = {
   isOnDiet: boolean;
 };
 
-type MealObject = {
+type MealSection = {
   date: string;
   data: MealDTO[];
 };
 
-export type AllMealsDTO = MealObject[];
+export type MealSectionListDTO = MealSection[];

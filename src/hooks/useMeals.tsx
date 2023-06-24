@@ -4,11 +4,10 @@ import React, {
   useState,
   useEffect,
   ReactNode,
-  useMemo,
   useCallback,
 } from 'react';
 import { mealsGetAll } from '@storage/meals/mealsGetAll';
-import { AllMealsDTO, MealDTO } from 'src/@dtos/MealDTO';
+import { MealSectionListDTO, MealDTO } from 'src/@dtos/MealDTO';
 import { mealCreate } from '@storage/meals/mealCreate';
 import { mealDestroy } from '@storage/meals/mealDestroy';
 
@@ -18,7 +17,7 @@ type Props = {
 
 type MealsContextData = {
   loading: boolean;
-  meals: AllMealsDTO;
+  meals: MealSectionListDTO;
   storeMeal: (meal: MealDTO) => void;
   findMealById: (id: string) => MealDTO | null;
   deleteMeal: (id: string) => Promise<void>;
@@ -28,8 +27,9 @@ type MealsContextData = {
 const MealsContext = createContext<MealsContextData>({} as MealsContextData);
 
 const MealsProvider = ({ children }: Props) => {
-  const [meals, setMeals] = useState<AllMealsDTO>([]);
+  const [meals, setMeals] = useState<MealSectionListDTO>([]);
   const [loading, setLoading] = useState(true);
+  console.log(JSON.stringify(meals))
 
   const storeMeal = useCallback(async (meal: MealDTO) => {
     try {

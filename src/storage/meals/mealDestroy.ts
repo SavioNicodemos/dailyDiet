@@ -1,9 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { MEAL_COLLECTION } from "@storage/storageConfig";
-import { AllMealsDTO } from "src/@dtos/MealDTO";
+import { MealSectionListDTO } from "src/@dtos/MealDTO";
 
-export async function mealDestroy(receivedMeals: AllMealsDTO, mealId: string) {
+export async function mealDestroy(receivedMeals: MealSectionListDTO, mealId: string) {
   try {
     const meals = [...receivedMeals];
 

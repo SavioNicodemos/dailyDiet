@@ -3,9 +3,9 @@ import uuid from "react-native-uuid";
 import { parse, compareDesc } from "date-fns";
 
 import { MEAL_COLLECTION } from "@storage/storageConfig";
-import { AllMealsDTO, MealDTO } from "src/@dtos/MealDTO";
+import { MealSectionListDTO, MealDTO } from "src/@dtos/MealDTO";
 
-export async function mealCreate(receivedMeals: AllMealsDTO, newMeal: MealDTO) {
+export async function mealCreate(receivedMeals: MealSectionListDTO, newMeal: MealDTO) {
   try {
     const meals = [...receivedMeals];
 

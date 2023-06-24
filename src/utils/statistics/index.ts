@@ -1,6 +1,6 @@
-import { AllMealsDTO } from "src/@dtos/MealDTO";
+import { MealSectionListDTO } from "src/@dtos/MealDTO";
 
-export function getMaximumStreak(meals: AllMealsDTO) {
+export function getMaximumStreak(meals: MealSectionListDTO) {
   let maxStreak = 0;
   let currentStreak = 0;
 
@@ -22,7 +22,7 @@ export function getMaximumStreak(meals: AllMealsDTO) {
   return maxStreak;
 }
 
-export function getMealsOnOffDiet(meals: AllMealsDTO) {
+export function getMealsOnOffDiet(meals: MealSectionListDTO) {
   let allMeals = 0;
   let mealsOnDiet = 0;
   let mealsOffDiet = 0;
