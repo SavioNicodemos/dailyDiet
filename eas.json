@@ -17,12 +17,18 @@
     "staging": {
       "distribution": "store",
       "autoIncrement": true,
-      "channel": "staging"
+      "channel": "staging",
+      "env": {
+        "APP_ENV": "staging"
+      }
     },
     "production": {
       "distribution": "store",
       "autoIncrement": true,
-      "channel": "production"
+      "channel": "production",
+      "env": {
+        "APP_ENV": "production"
+      }
     }
   },
   "submit": {
