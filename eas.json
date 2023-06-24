@@ -7,19 +7,41 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "development"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "channel": "preview"
+    },
+    "staging": {
+      "distribution": "store",
+      "autoIncrement": true,
+      "channel": "staging",
+      "env": {
+        "APP_ENV": "staging"
+      }
     },
     "production": {
-      "autoIncrement": true
+      "distribution": "store",
+      "autoIncrement": true,
+      "channel": "production",
+      "env": {
+        "APP_ENV": "production"
+      }
     }
   },
   "submit": {
     "production": {
       "android": {
         "track": "production",
+        "releaseStatus": "completed",
+        "serviceAccountKeyPath": "./.expo/pc-api-5772855197851813829-497-baf767522ef9.json"
+      }
+    },
+    "staging": {
+      "android": {
+        "track": "internal",
         "releaseStatus": "draft",
         "serviceAccountKeyPath": "./.expo/pc-api-5772855197851813829-497-baf767522ef9.json"
       }
