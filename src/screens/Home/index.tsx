@@ -18,7 +18,7 @@ import {
   AvatarPicture,
   BottomGradient,
   Container,
-  GoToStatisticsButton,
+  GoToStatisticsContainer,
   GoToStatisticsIcon,
   HomeHeader,
   MealDateText,
@@ -54,10 +54,10 @@ export const Home = () => {
         <AvatarPicture source={Avatar} />
       </HomeHeader>
 
-      <MealsPercentageContainer type={colorSchemeType}>
-        <GoToStatisticsButton onPress={handleGoToStatistics}>
+      <MealsPercentageContainer type={colorSchemeType} onPress={handleGoToStatistics} activeOpacity={0.7}>
+        <GoToStatisticsContainer>
           <GoToStatisticsIcon type={colorSchemeType} />
-        </GoToStatisticsButton>
+        </GoToStatisticsContainer>
         <PercentageText percentageValue={percentageOnDiet} style={{ marginTop: -20 }} />
       </MealsPercentageContainer>
 
