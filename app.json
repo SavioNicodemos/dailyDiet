@@ -3,7 +3,7 @@
     "name": "Daily Diet",
     "slug": "daily-diet",
     "owner": "savionicodemos",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "plugins": [
       "expo-localization"
     ],
