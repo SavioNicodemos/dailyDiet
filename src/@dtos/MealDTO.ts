@@ -1,5 +1,4 @@
 export type MealDTO = {
-  id?: string;
   name: string;
   description: string;
   date: string;
@@ -7,9 +6,18 @@ export type MealDTO = {
   isOnDiet: boolean;
 };
 
-type MealSection = {
+export type MealWithIdDTO = {
+  id: string;
+  name: string;
+  description: string;
   date: string;
-  data: MealDTO[];
+  time: string;
+  isOnDiet: boolean;
 };
 
-export type MealSectionListDTO = MealSection[];
+export type MealSectionDTO = {
+  date: string;
+  data: MealWithIdDTO[];
+};
+
+export type MealSectionListDTO = MealSectionDTO[];

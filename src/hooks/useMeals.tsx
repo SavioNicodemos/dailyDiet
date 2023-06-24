@@ -5,11 +5,13 @@ import React, {
   useEffect,
   ReactNode,
   useCallback,
+  useMemo,
 } from 'react';
+import uuid from "react-native-uuid";
 import { mealsGetAll } from '@storage/meals/mealsGetAll';
-import { MealSectionListDTO, MealDTO } from 'src/@dtos/MealDTO';
-import { mealCreate } from '@storage/meals/mealCreate';
-import { mealDestroy } from '@storage/meals/mealDestroy';
+import { MealSectionListDTO, MealDTO, MealWithIdDTO } from 'src/@dtos/MealDTO';
+import { mealSave } from '@storage/meals/mealSave';
+import { getTimestamp } from '@utils/dates';
 
 type Props = {
   children?: ReactNode;
@@ -17,60 +19,74 @@ type Props = {
 
 type MealsContextData = {
   loading: boolean;
-  meals: MealSectionListDTO;
+  meals: MealWithIdDTO[];
+  mealsBySection: MealSectionListDTO;
   storeMeal: (meal: MealDTO) => void;
   findMealById: (id: string) => MealDTO | null;
   deleteMeal: (id: string) => Promise<void>;
-  updateMeal: (meal: MealDTO) => Promise<void>;
+  updateMeal: (meal: MealWithIdDTO) => Promise<void>;
 }
 
 const MealsContext = createContext<MealsContextData>({} as MealsContextData);
 
 const MealsProvider = ({ children }: Props) => {
-  const [meals, setMeals] = useState<MealSectionListDTO>([]);
+  const [meals, setMeals] = useState<MealWithIdDTO[]>([]);
   const [loading, setLoading] = useState(true);
-  console.log(JSON.stringify(meals))
 
-  const storeMeal = useCallback(async (meal: MealDTO) => {
-    try {
-      const updatedMeals = await mealCreate(meals, meal);
-      setMeals(updatedMeals);
-    } catch (error) {
-      throw error;
-    }
+  const mealsBySection: MealSectionListDTO = useMemo(() => {
+    if (!meals.length) return [];
+    console.log('meals', meals);
+    const sortedList = meals.sort((a, b) => getTimestamp(b) - getTimestamp(a));
+
+    const groupedList: MealSectionListDTO = [];
+
+    sortedList.forEach((item) => {
+      const existingGroup = groupedList.find((group) => group.date === item.date);
+
+      if (existingGroup) {
+        existingGroup.data.push(item);
+      } else {
+        groupedList.push({
+          date: item.date,
+          data: [item],
+        });
+      }
+    });
+
+    return groupedList;
   }, [meals]);
 
-  const findMealById = useCallback((id: string) => {
-    let foundMeal = null;
-    for (const date of meals) {
-      for (const meal of date.data) {
-        if (meal.id === id) {
-          foundMeal = meal;
-          break;
-        }
-      }
-      if (foundMeal !== null) {
-        break;
-      }
-    }
+  const storeMeal = useCallback(async (meal: MealDTO) => {
+    const newMealToAdd: MealWithIdDTO = { ...meal, id: JSON.stringify(uuid.v4()) };
+    const updatedMeals = [...meals, newMealToAdd];
+
+    await mealSave(updatedMeals);
+
+    setMeals(updatedMeals);
+  }, [meals]);
+
+  const findMealById = useCallback((id: string): MealWithIdDTO | null => {
+    const foundMeal = meals.find(meal => meal.id === id) || null;
     return foundMeal;
   }, [meals]);
 
   const deleteMeal = useCallback(async (id: string) => {
-    try {
-      const updatedMeals = await mealDestroy(meals, id);
-      setMeals(updatedMeals);
-    } catch (error) {
-      throw error;
-    }
+    const updatedMeals = meals.filter(meal => meal.id !== id);
+    await mealSave(updatedMeals);
+    setMeals(updatedMeals);
   }, [meals]);
 
-  const updateMeal = useCallback(async (meal: MealDTO) => {
+  const updateMeal = useCallback(async (meal: MealWithIdDTO) => {
     try {
-      if (meal.id)
-        await mealDestroy(meals, meal.id);
+      if (!meal.id) throw new Error('Meal id not found');
 
-      const updatedMeals = await mealCreate(meals, meal);
+      const updatedMeals = [...meals];
+      const mealIndex = updatedMeals.findIndex(mealItem => mealItem.id === meal.id);
+
+      if (mealIndex < 0) throw new Error('Meal not found');
+
+      updatedMeals[mealIndex] = meal;
+      await mealSave(updatedMeals);
 
       setMeals(updatedMeals);
     } catch (error) {
@@ -91,7 +107,7 @@ const MealsProvider = ({ children }: Props) => {
 
   return (
     <MealsContext.Provider
-      value={{ loading, meals, storeMeal, findMealById, deleteMeal, updateMeal }}
+      value={{ loading, meals, mealsBySection, storeMeal, findMealById, deleteMeal, updateMeal }}
     >
       {children}
     </MealsContext.Provider>
