@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
 import { Alert, View } from 'react-native';
-import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Button } from '@components/Button';
 import { DateTimeInput } from '@components/DateTimeInput';
@@ -8,10 +8,10 @@ import { Header } from '@components/Header';
 import { Input } from '@components/Input';
 import { IsOnDietToggle } from '@components/IsOnDietToggle';
 
-import { Container, Content, DateTimeContainer } from './styles';
 import { useMeals } from '@hooks/useMeals';
-import { MealDTO, MealWithIdDTO } from 'src/@dtos/MealDTO';
 import { i18n } from '@langs/i18n';
+import { MealDTO, MealWithIdDTO } from 'src/@dtos/MealDTO';
+import { Container, Content, DateTimeContainer } from './(styles)';
 
 type AddUpdateMeal = {
   id?: string;
@@ -26,7 +26,7 @@ type RouteParams = {
   id?: string;
 }
 
-export const NewMeal = () => {
+const NewMeal = () => {
   const [meal, setMeal] = useState<AddUpdateMeal>({
     id: undefined,
     name: '',
@@ -40,14 +40,10 @@ export const NewMeal = () => {
 
   const { storeMeal, findMealById, updateMeal } = useMeals();
 
-  const navigation = useNavigation();
-
-  const route = useRoute();
-
-  const { id } = route.params as RouteParams;
+  const { id } = useLocalSearchParams<RouteParams>();
 
   function handleGoBack() {
-    navigation.goBack();
+    router.back();
   }
 
   async function handleSubmitMeal() {
@@ -63,12 +59,12 @@ export const NewMeal = () => {
 
       if (isEditMode) {
         await updateMeal(meal as MealWithIdDTO);
-        navigation.navigate('viewMeal', { id: (meal as MealWithIdDTO).id });
+        router.push({ pathname: '/viewMeal', params: { id: (meal as MealWithIdDTO).id } });
         return;
       }
 
       await storeMeal(meal as MealDTO);
-      navigation.navigate('finishedRegistration', { isOnDiet: meal.isOnDiet })
+      router.push({ pathname: '/finishedRegistration', params: { onDiet: meal.isOnDiet ? 'true' : 'false' } })
     } catch (error) {
       Alert.alert(i18n.t('errors.newMeal'), i18n.t('errors.createNewMeal'))
     }
@@ -139,3 +135,5 @@ export const NewMeal = () => {
     </Container>
   )
 };
+
+export default NewMeal;

@@ -1,8 +1,8 @@
+import { useRouter } from 'expo-router';
 import { Alert, SectionList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 
-import Logo from '@assets/Logo.svg';
 import Avatar from '@assets/ForkKnife.svg';
+import Logo from '@assets/Logo.svg';
 
 import { Button } from '@components/Button';
 import { ListEmpty } from '@components/ListEmpty';
@@ -13,6 +13,7 @@ import { PercentageText } from '@components/PercentageText';
 import { useMeals } from '@hooks/useMeals';
 import { useStatistics } from '@hooks/useStatistics';
 
+import { i18n } from '@langs/i18n';
 import {
   AppLogo,
   AvatarPicture,
@@ -26,24 +27,24 @@ import {
   MealsPercentageContainer,
   MealTitle,
   TopGradient
-} from './styles';
-import { i18n } from '@langs/i18n';
+} from './(styles)';
 
-export const Home = () => {
+const Home = () => {
   const { percentageOnDiet, colorSchemeType } = useStatistics();
 
   const { mealsBySection, loading: isLoading } = useMeals();
-  const navigation = useNavigation();
+
+  const router = useRouter();
 
   function handleViewMeal(id: string | undefined) {
     if (id) {
-      return navigation.navigate('viewMeal', { id: id })
+      return router.push({ pathname: '/viewMeal', params: { id: id } })
     }
     return Alert.alert(i18n.t('pages.home.meal'), i18n.t('pages.home.noValidId'));
   }
 
   function handleGoToStatistics() {
-    navigation.navigate('statistics');
+    router.push('/statistics');
   }
 
   return (
@@ -67,7 +68,7 @@ export const Home = () => {
         </MealTitle>
 
         <Button
-          onPress={() => navigation.navigate('newMeal', {})}
+          onPress={() => router.push('/newMeal')}
           icon='plus'
           title={i18n.t('pages.home.newMeal')}
         />
@@ -97,3 +98,5 @@ export const Home = () => {
     </Container>
   )
 };
+
+export default Home;

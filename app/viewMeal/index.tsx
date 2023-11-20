@@ -1,26 +1,35 @@
-import { useNavigation, useRoute } from '@react-navigation/native';
 
-import { Header } from '@components/Header';
-import { Container, Content, Footer, ItemDetails, DateTitle, DatetimeText, Description, Name, OnDietContainer, Indicator, OnDietText } from './styles';
 import { Button } from '@components/Button';
+import { Header } from '@components/Header';
 import { Modal } from '@components/Modal';
-import { useState } from 'react';
 import { useMeals } from '@hooks/useMeals';
-import { Alert } from 'react-native';
 import { i18n } from '@langs/i18n';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
+import { Alert } from 'react-native';
+import {
+  Container,
+  Content,
+  DateTitle,
+  DatetimeText,
+  Description,
+  Footer,
+  Indicator,
+  ItemDetails,
+  Name,
+  OnDietContainer,
+  OnDietText
+} from './(styles)';
 
 type RouteParams = {
   id: string;
 }
 
-export const ViewMeal = () => {
+const ViewMeal = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const navigation = useNavigation();
-  const route = useRoute()
+  const { id } = useLocalSearchParams<RouteParams>()
   const { findMealById, deleteMeal } = useMeals();
-
-  const { id } = route.params as RouteParams;
 
   const selectedMeal = findMealById(id);
 
@@ -36,7 +45,7 @@ export const ViewMeal = () => {
   }
 
   function handleEditMeal() {
-    navigation.navigate('newMeal', { id })
+    router.push({ pathname: '/newMeal', params: { id } })
   }
 
   function handleOpenModal() {
@@ -48,7 +57,7 @@ export const ViewMeal = () => {
   }
 
   function handleGoToHome() {
-    navigation.navigate('home');
+    return router.replace('/');
   }
   return (
     <Container type={colorSchemeType}>
@@ -97,3 +106,5 @@ export const ViewMeal = () => {
     </Container>
   )
 };
+
+export default ViewMeal;

@@ -1,20 +1,18 @@
-import { useNavigation } from '@react-navigation/native';
-
 import { Header } from '@components/Header';
 import { PercentageText } from '@components/PercentageText';
 import { StatisticsCard } from '@components/StatisticsCard';
-import { Container, OnAndOffDietContainer, StatisticsCardsContainer, StatisticsTitle } from './styles';
 import { useStatistics } from '@hooks/useStatistics';
 import { i18n } from '@langs/i18n';
+import { router } from 'expo-router';
+import { Container, OnAndOffDietContainer, StatisticsCardsContainer, StatisticsTitle } from './(styles)';
 
-export const Statistics = () => {
-  const navigation = useNavigation();
-
+const Statistics = () => {
   const { percentageOnDiet, colorSchemeType, isAcceptable, bestStreak, mealsCount } = useStatistics();
 
   function handleGoToHome() {
-    navigation.goBack();
+    router.back();
   }
+
   return (
     <Container type={colorSchemeType}>
       <Header
@@ -57,3 +55,5 @@ export const Statistics = () => {
     </Container>
   )
 };
+
+export default Statistics;
