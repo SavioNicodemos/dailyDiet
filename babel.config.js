@@ -20,7 +20,7 @@ module.exports = function (api) {
           },
         },
       ],
-      "expo-router/babel",
+      "babel-preset-expo",
     ],
   };
 };

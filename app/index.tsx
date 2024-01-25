@@ -57,6 +57,7 @@ const Home = () => {
 
       <MealsPercentageContainer type={colorSchemeType} onPress={handleGoToStatistics} activeOpacity={0.7}>
         <GoToStatisticsContainer>
+          {/* @ts-ignore */}
           <GoToStatisticsIcon type={colorSchemeType} />
         </GoToStatisticsContainer>
         <PercentageText percentageValue={percentageOnDiet} style={{ marginTop: -20 }} />
@@ -73,6 +74,7 @@ const Home = () => {
           title={i18n.t('pages.home.newMeal')}
         />
 
+        {/* @ts-ignore */}
         <TopGradient />
         {isLoading ?
           <Loading />
@@ -92,6 +94,7 @@ const Home = () => {
             showsVerticalScrollIndicator={false}
           />
         }
+        {/* @ts-ignore */}
         <BottomGradient />
 
       </MealListContainer>
