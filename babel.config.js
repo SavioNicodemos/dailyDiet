@@ -20,7 +20,6 @@ module.exports = function (api) {
           },
         },
       ],
-      "babel-preset-expo",
     ],
   };
 };
