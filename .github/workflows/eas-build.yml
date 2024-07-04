@@ -36,4 +36,4 @@ jobs:
         run: npm ci
 
       - name: 🚀 Build app for Android on EAS and submit to Google Play Store
-        run: eas build -p=android -e=production --auto-submit --non-interactive
+        run: eas build -p=android -e=production --auto-submit --non-interactive --no-wait
