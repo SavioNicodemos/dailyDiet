@@ -10,7 +10,7 @@ import { ThemeProvider } from "styled-components/native";
 
 import { Loading } from "@components/Loading";
 import { AppProvider } from "@hooks/index";
-import theme from "../src/theme";
+import theme from "../theme";
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({ NunitoSans_400Regular, NunitoSans_700Bold });
