@@ -4,7 +4,7 @@
     "slug": "daily-diet",
     "scheme": "daily-diet",
     "owner": "savionicodemos",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "newArchEnabled": true,
     "plugins": ["expo-localization", "expo-router", "expo-font"],
     "orientation": "portrait",
