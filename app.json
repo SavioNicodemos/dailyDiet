@@ -5,6 +5,7 @@
     "scheme": "daily-diet",
     "owner": "savionicodemos",
     "version": "1.0.3",
+    "newArchEnabled": true,
     "plugins": ["expo-localization", "expo-router", "expo-font"],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
